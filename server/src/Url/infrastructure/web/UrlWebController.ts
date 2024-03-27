@@ -18,12 +18,13 @@ export default class UrlWebController {
         const url = await this.shortenUrlUseCase.execute(longUrl);
         res.status(201).json({ url: url });
       } else {
+        console.log('Invalid URL');
         res.status(400).json({ error: "Invalid URL" });
       }
     }
   
     async decodeShortenedUrl(req: Request, res: Response) {
-      const url = await this.decodeShortenedUrlUseCase.execute('http://' + req.headers.host  + req.url);
+      const url = await this.decodeShortenedUrlUseCase.execute(req.url.slice(1));
       
       if (url) {
         res.redirect(url);

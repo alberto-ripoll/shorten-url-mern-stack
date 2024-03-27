@@ -25,7 +25,7 @@ export default class UrlShortenerService {
             continue;
         }
 
-        const url = new Url(longUrl, 'http://localhost:3000/'+shortUrl);
+        const url = new Url(longUrl, shortUrl);
         return url;
         }
     }

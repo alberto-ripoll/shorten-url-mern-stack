@@ -3,13 +3,6 @@ import Url from "../../domain/Url";
 import { injectable } from "inversify";
 import { MongoClient } from 'mongodb';
 
-interface UrlSchema {
-    url: string;
-    shortUrl: string;
-    createdAt: Date;
-    updatedAt: Date;
-}
-
 injectable()
 export default class UrlMongoRepository implements UrlRepository {
     private databaseClient: MongoClient;
