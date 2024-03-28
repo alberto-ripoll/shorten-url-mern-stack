@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export function UrlForm({ url, setUrl}) {
     const [enlace, setEnlace] = useState('');
     const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
 
     let loadingClass = loading ? 'animate-spin' : 'px-7 py-4 duration-150 bg-white rounded-lg hover:bg-indigo-700 hover:text-white active:shadow-lg text-black';
 
@@ -11,8 +12,13 @@ export function UrlForm({ url, setUrl}) {
     };
 
     const handleSubmit = async (event) => {
+        if (enlace === ''){
+            setError(true);
+            return;
+        }
         event.preventDefault();
         setLoading(true);
+        setError(false);
         try {
             const response =
                 await fetch('http://localhost:3000/shorten-url', {
@@ -40,9 +46,11 @@ export function UrlForm({ url, setUrl}) {
                     className="w-full p-2.5 ml-2 bg-transparent outline-none"
                 />
             </div>
+            {error ? <p className="text-red-500 mt-1 mb-5">Please enter a valid URL</p> : null}
+
             <button
                 onClick={handleSubmit}
-                className={`w-full text-white ${loadingClass}`}
+                className={`w-full text-black ${loadingClass}`}
             >
                 Shorten
             </button>

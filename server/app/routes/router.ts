@@ -8,6 +8,7 @@ import { TYPES } from '../di/types';
 
 export const router = Router();
 
+
 router.get('/:url', (req, res) => new UrlWebController(
     {
         shortenUrlUseCase: new ShortenUrlUseCase(

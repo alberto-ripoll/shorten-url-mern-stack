@@ -2,10 +2,19 @@ import React from 'react';
 import { Copy } from './Copy';
 
 export function LatestUrlGenerated({ url }) {
+    let enlace = window.location.href + url;
     return (
-        <div className="flex items-center justify-center w-screen gap-4">
-            <a className='underline' href="{window.location.href}{url}" target='_blank'>{window.location.href}{url}</a>
-            {url === '' ? null :<Copy url={url} /> }
-        </div>
+        <>
+            {url === '' ? null :
+                <>
+                    <div className="flex items-center justify-center w-screen gap-4">
+                        <a className='underline' href={enlace} target='_blank' rel="noreferrer">{enlace}</a>
+                        {url === '' ? null : <Copy url={url} />}
+                    </div>
+                </>
+
+            }
+        </>
+
     )
 }
