@@ -4,10 +4,9 @@ export function UrlForm({ url, setUrl}) {
     const [enlace, setEnlace] = useState('');
     const [loading, setLoading] = useState(false);
 
-    let loadingClass = loading ? 'animate-spin' : 'px-7 py-4 duration-150 bg-white rounded-lg hover:bg-indigo-700 active:shadow-lg text-cyan-800';
+    let loadingClass = loading ? 'animate-spin' : 'px-7 py-4 duration-150 bg-white rounded-lg hover:bg-indigo-700 hover:text-white active:shadow-lg text-black';
 
     const handleChange = (event) => {
-        console.log(event.target.value);
         setEnlace(event.target.value);
     };
 
@@ -24,7 +23,6 @@ export function UrlForm({ url, setUrl}) {
                     body: JSON.stringify({ url: enlace }),
                 });
                 const data = await response.json();
-                console.log(data);
                 setLoading(false);
                 setUrl(data.url);
         } catch (error) {

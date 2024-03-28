@@ -27,7 +27,9 @@ export default class UrlWebController {
       const url = await this.decodeShortenedUrlUseCase.execute(req.url.slice(1));
       
       if (url) {
-        res.redirect(url);
+        res.writeHead(301, {
+          Location: url
+        }).end();
     }
   }
 }

@@ -10,7 +10,7 @@ const app: Express = express();
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: 'http://localhost:3002', // Permite solicitudes solo desde este origen
+    origin: 'http://localhost:3001', // Permite solicitudes solo desde este origen
     optionsSuccessStatus: 200 // Algunos navegadores más antiguos (IE11, varios SmartTVs) se bloquean con 204
   };
 

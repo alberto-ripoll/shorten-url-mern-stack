@@ -1,11 +1,11 @@
 import React from 'react';
+import { Copy } from './Copy';
 
-export function LatestUrlGenerated({ url}) {
+export function LatestUrlGenerated({ url }) {
     return (
-<div id="default-carousel" className="relative w-full" data-carousel="slide">
-<div className="duration-700 ease-in-out" data-carousel-item>
-    <p>{url}</p>
+        <div className="flex items-center justify-center w-screen gap-4">
+            <a className='underline' href="{window.location.href}{url}" target='_blank'>{window.location.href}{url}</a>
+            {url === '' ? null :<Copy url={url} /> }
         </div>
-</div>
     )
 }

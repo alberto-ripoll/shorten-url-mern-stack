@@ -13,8 +13,7 @@ export default class UrlMongoRepository implements UrlRepository {
 
     public async findShortenedUrl(shortUrl: string): Promise<Url> {
         const url = await this.databaseClient.db('UrlSchema').collection('UrlSchema').findOne({ shortUrl: shortUrl });
-
-        if (!url) {
+        if (url === null) {
             throw new Error(`Shortened URL: ${shortUrl} not found`);
         }
         return new Url(url.url, url.shortUrl);
@@ -23,7 +22,7 @@ export default class UrlMongoRepository implements UrlRepository {
     public async findUrl(longUrl: string): Promise<Url> {
         const url = await this.databaseClient.db('UrlSchema').collection('UrlSchema').findOne({ url: longUrl });
 
-        if (!url) {
+        if (url === null) {
             throw new Error('Url not found');
         }
         return new Url(url.url, url.shortUrl);
